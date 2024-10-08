@@ -50,7 +50,7 @@ if addResponse:
     ss.additionalResponses.append((ss.currQ, ss.currRes))
 
 st.write(ss.additionalResponses)
-    
+
 
 
 
