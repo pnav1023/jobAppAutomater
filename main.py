@@ -52,13 +52,3 @@ if addResponse:
 st.write(ss.additionalResponses)
 
 
-
-
-
-# Display the list
-# if ss.skills:
-#     st.write("Your list of skills:")
-#     for skill in ss.skills:
-#         st.write(skill)
-
-
