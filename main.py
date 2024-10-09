@@ -1,4 +1,11 @@
 import streamlit as st
+import sys
+# from ..jobAppAutomater.db.db_main import db_connection
+import db_main
+from io import StringIO
+
+
+pdf_path = 'uploads/linkedin_profile.pdf'  # Path to the uploaded resume (adjust path as needed)
 
 ss = st.session_state
 
@@ -9,7 +16,6 @@ st.set_page_config(
 
 st.write("# Welcome to [Insert Our Name]! 👋")
 
-st.file_uploader("Upload Linkedin PDF", type="pdf", accept_multiple_files=False)
 
 # Initialize the session state to store the list
 if 'skills' not in ss:
@@ -26,6 +32,16 @@ if "additionalResponses" not in ss:
     ss.additionalResponses = []
 if "addMoreInfo" not in ss:
     ss.addMoreInfo = True
+if "pdf" not in ss:
+    ss.pdf = ""
+if "stringio" not in ss:
+    ss.stringio = ""
+
+# ss.pdf = st.file_uploader("Upload Linkedin PDF", type="pdf", accept_multiple_files=False)
+# ss.stringio = StringIO(ss.pdf.getvalue().decode("utf-8"))
+# st.write(ss.stringio.read())
+
+pdf=st.file_uploader("Upload Linkedin PDF", type="pdf", accept_multiple_files=False)
 
 # Create a text input field
 user_input = st.text_input("Enter your skills:", "")
@@ -51,14 +67,8 @@ if addResponse:
 
 st.write(ss.additionalResponses)
 
-
-
-
-
-# Display the list
-# if ss.skills:
-#     st.write("Your list of skills:")
-#     for skill in ss.skills:
-#         st.write(skill)
+testdb = st.button("Test")
+if testdb:
+    st.write(db_main.db_connection(pdf, user_input_skills=ss.skills, industries_of_interest="", describe_yourself="", question=""))
 
 

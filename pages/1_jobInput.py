@@ -4,6 +4,8 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
+jd = st.text_area("Paste job description here")
+
 if st.button("Generate links"):
     topic="python programming"
 
